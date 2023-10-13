@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33027.164
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoRepairShop", "AutoRepairShop.csproj", "{4D6D0C0C-3839-4C10-8D5C-F16697F9FC3A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C1F4E906-C1CA-4B18-AC91-2A171276B0DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{26BD3D91-7360-4C3F-B886-2261546F59E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoRepairShop.App", "src\AutoRepairShop.App\AutoRepairShop.App.csproj", "{2B750915-98A0-477E-836B-0000F9DC5AA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoRepairShop.Core", "src\AutoRepairShop.Core\AutoRepairShop.Core.csproj", "{940D58F2-4DD4-4026-BDD2-AF1FF0E69C18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoRepairShop.Data", "src\AutoRepairShop.Data\AutoRepairShop.Data.csproj", "{17255706-6B34-48F6-9E7D-ED6427455CAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoRepairShop.Core.Tests", "tests\AutoRepairShop.Core.Tests\AutoRepairShop.Core.Tests.csproj", "{B513BB1E-F5E0-469A-8FC7-CC2CE9EAC629}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +21,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D6D0C0C-3839-4C10-8D5C-F16697F9FC3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D6D0C0C-3839-4C10-8D5C-F16697F9FC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D6D0C0C-3839-4C10-8D5C-F16697F9FC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D6D0C0C-3839-4C10-8D5C-F16697F9FC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B750915-98A0-477E-836B-0000F9DC5AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B750915-98A0-477E-836B-0000F9DC5AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B750915-98A0-477E-836B-0000F9DC5AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B750915-98A0-477E-836B-0000F9DC5AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{940D58F2-4DD4-4026-BDD2-AF1FF0E69C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940D58F2-4DD4-4026-BDD2-AF1FF0E69C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940D58F2-4DD4-4026-BDD2-AF1FF0E69C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940D58F2-4DD4-4026-BDD2-AF1FF0E69C18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17255706-6B34-48F6-9E7D-ED6427455CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17255706-6B34-48F6-9E7D-ED6427455CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17255706-6B34-48F6-9E7D-ED6427455CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17255706-6B34-48F6-9E7D-ED6427455CAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B513BB1E-F5E0-469A-8FC7-CC2CE9EAC629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B513BB1E-F5E0-469A-8FC7-CC2CE9EAC629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B513BB1E-F5E0-469A-8FC7-CC2CE9EAC629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B513BB1E-F5E0-469A-8FC7-CC2CE9EAC629}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2B750915-98A0-477E-836B-0000F9DC5AA1} = {C1F4E906-C1CA-4B18-AC91-2A171276B0DE}
+		{940D58F2-4DD4-4026-BDD2-AF1FF0E69C18} = {C1F4E906-C1CA-4B18-AC91-2A171276B0DE}
+		{17255706-6B34-48F6-9E7D-ED6427455CAA} = {C1F4E906-C1CA-4B18-AC91-2A171276B0DE}
+		{B513BB1E-F5E0-469A-8FC7-CC2CE9EAC629} = {26BD3D91-7360-4C3F-B886-2261546F59E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14D66001-45D3-4981-9DA7-BC1C100A88DD}
