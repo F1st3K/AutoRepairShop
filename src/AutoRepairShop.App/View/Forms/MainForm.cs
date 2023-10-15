@@ -12,10 +12,19 @@ namespace AutoRepairShop.App.View.Forms
 {
     public partial class MainForm : Form
     {
+        private Roles _role = Roles.NoAuth;
+
         public MainForm()
         {
             InitializeComponent();
             this.Init();
+        }
+
+        public MainForm(Roles role, int uid) : this()
+        {
+            _role = role;
+            if (_role == Roles.NoAuth) return;
+            
         }
     }
 }

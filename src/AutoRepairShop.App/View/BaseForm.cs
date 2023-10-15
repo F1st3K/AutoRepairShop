@@ -4,13 +4,25 @@ namespace AutoRepairShop.App.View
 {
     public static class BaseForm
     {
-        public static void Init(this Form form)
+        public static void Init(this Form obj)
         {
-            form.BackColor = System.Drawing.Color.White;
-            form.ForeColor = System.Drawing.Color.Black;
-            form.ControlBox = false;
-            form.FormBorderStyle = FormBorderStyle.FixedSingle;
-            form.StartPosition = FormStartPosition.CenterScreen;
+            obj.BackColor = System.Drawing.Color.White;
+            obj.ForeColor = System.Drawing.Color.Black;
+            obj.ControlBox = false;
+            obj.FormBorderStyle = FormBorderStyle.FixedSingle;
+            obj.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        public static void SwitchFormTo(this Form obj, Form form)
+        {
+            form.FormClosed += (e, a) => obj.Show();
+            obj.Hide();
+            form.Show();
+        }
+
+        public static void SwitchToBackForm(this Form obj)
+        {
+            obj.Close();
         }
     }
 }
