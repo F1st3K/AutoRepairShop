@@ -87,7 +87,7 @@ CREATE TABLE `orderstatuses` (
   `Name` text NOT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,6 +96,7 @@ CREATE TABLE `orderstatuses` (
 
 LOCK TABLES `orderstatuses` WRITE;
 /*!40000 ALTER TABLE `orderstatuses` DISABLE KEYS */;
+INSERT INTO `orderstatuses` VALUES (1,'Выполнен'),(2,'Собирается'),(3,'Отменен');
 /*!40000 ALTER TABLE `orderstatuses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +112,7 @@ CREATE TABLE `productcategories` (
   `Name` text NOT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,6 +121,7 @@ CREATE TABLE `productcategories` (
 
 LOCK TABLES `productcategories` WRITE;
 /*!40000 ALTER TABLE `productcategories` DISABLE KEYS */;
+INSERT INTO `productcategories` VALUES (1,'Зарядные устройства'),(2,'Съемники подшипников'),(3,'Автозапчасти'),(4,'Ручные инструменты'),(5,'Аксессуары'),(6,'Автосервис');
 /*!40000 ALTER TABLE `productcategories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +137,7 @@ CREATE TABLE `productmanufacturers` (
   `Name` text NOT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,6 +146,7 @@ CREATE TABLE `productmanufacturers` (
 
 LOCK TABLES `productmanufacturers` WRITE;
 /*!40000 ALTER TABLE `productmanufacturers` DISABLE KEYS */;
+INSERT INTO `productmanufacturers` VALUES (1,'KOLNER'),(2,'AIRLINE'),(3,'BIG FIGHTER'),(4,'STV'),(5,'JONNESWAY'),(6,'BOSCH'),(7,'TCL'),(8,'JTC'),(9,'GRASS'),(10,'SMART'),(11,'CHAMPION'),(12,'ALCA'),(13,'MOBIL'),(14,'EXPERT');
 /*!40000 ALTER TABLE `productmanufacturers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,6 +185,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES ('A782R4','Аккумулятор','Аккумулятор автомобильный 3 55р','A782R4.jpg',3,3,1,24,0.2500,4500),('D374E4','Съемник подшипников','Съемник 2 AT-GP2-05','D374E4.jpeg',2,2,1,2,0.1300,1400),('D799T6','Съемник подшипников','Съемник для подшипников 8 9000','picture.png',2,8,1,6,0.2500,1800),('E679R3','Автошампунь','Автошампунь 9 800026 Active Foam Truck','picture.png',6,9,1,14,0.1000,4000),('E932T8','Полироль','Полироль 9 125101 Black Brilliance','picture.png',6,9,1,23,0.0700,2100),('F026R4','Антифриз','Антифриз сине-зеленый 13 ANTIFREEZE EXTRA','picture.png',6,13,1,13,0.1500,530),('F938T5','Антифриз','Антифриз красный 7 LLC01212','picture.png',6,7,1,34,0.1500,1200),('H572T6','Парктроник','Парктроник 2 APS-8L-02','picture.png',3,2,1,12,0.1000,2900),('K702L6','Ключ','Ключ 5 W233032 (30 / 32 мм)','picture.png',4,5,1,9,0.1000,1600),('K830R4','Колпак для колеса','Колпак для колеса 2 Супер Астра R16 серебристый 2шт','K830R4.jpg',3,2,2,14,0.3100,915),('K849L6','Набор ключей','Набор ключей накидных 4 00-00010990 61','K849L6.jpeg',4,4,2,23,0.1000,780),('L802Y5','Лопата','Лопата саперная 2 AB-S-03','picture.png',5,2,1,23,0.1000,870),('O393R4','Отвертка','Отвертка 5 D04P2100','O393R4.jpeg',4,5,1,14,0.1200,460),('P023T2','Провода прикуривания','Провода прикуривания в сумке 10 CABLE 700 4,5м','picture.png',3,10,1,6,0.2500,3400),('P307T5','Провода прикуривания','Провода прикуривания в сумке 14 400А 2,5м','picture.png',3,14,1,2,0.2500,700),('S021R4','Адаптер для щеток','Адаптер для щеток стеклоочистителя 12 Top Lock A/C блистер 2 шт','picture.png',3,12,2,13,0.2400,200),('S037R9','Щетка','Щётка 2 AB-H-03','S037R9.jpeg',5,2,1,26,0.2000,740),('S625T5','Щетка','щетка стеклоочистителя 12 Start 16\"/40см каркасная\"','picture.png',3,12,1,12,0.1200,249),('S826R4','Щетка','Щетка стеклоочистителя 12 Super flat 19\"/48см бескаркасная\"','picture.png',3,12,1,28,0.2000,530),('S983R4','Щетка','Щетка с/о 6 ECO 65C 650мм каркасная','S983R4.jpg',3,6,1,8,0.3000,500),('V892T6','Свеча зажигания','Свеча зажигания 11 IGP F7RTC','picture.png',3,11,1,21,0.1500,130),('Z326T9','Зарядное устройство','Устройство зарядное 14 ЗУ-300 6/12В 3,8А','picture.png',1,14,1,14,0.1000,2400),('Z374R3','Зарядное устройство','Зарядное устройство 2 ACH-15A-08','Z374R3.jpeg',1,2,1,14,0.1500,4600),('Z469T7','Устройство пуско-зарядное','Устройство пуско-зарядное 2 12В 8000мАч 350А','Z469T7.jpg',1,2,1,4,0.2500,4000),('Z472R4','Зарядное устройство','Зарядное устройство 1 KBCН 4','Z472R4.jpeg',1,1,1,6,0.1200,1250);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +201,7 @@ CREATE TABLE `productunits` (
   `Name` text NOT NULL,
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Id_UNIQUE` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,6 +210,7 @@ CREATE TABLE `productunits` (
 
 LOCK TABLES `productunits` WRITE;
 /*!40000 ALTER TABLE `productunits` DISABLE KEYS */;
+INSERT INTO `productunits` VALUES (1,'шт.'),(2,'уп.');
 /*!40000 ALTER TABLE `productunits` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,4 +309,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-15 16:00:37
+-- Dump completed on 2023-10-15 17:01:08
