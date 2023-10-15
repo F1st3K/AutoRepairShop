@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoRepairShop.App.View.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace AutoRepairShop.App
@@ -13,7 +14,7 @@ namespace AutoRepairShop.App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run();
+            Application.Run(new AuthForm());
         }
     }
 }
