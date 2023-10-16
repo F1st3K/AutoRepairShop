@@ -8,6 +8,6 @@ namespace AutoRepairShop.Core.Entities.Interfaces
 {
     interface IUniqNamed
     {
-        string UniqName { get; }
+        string UniqName { get; set; }
     }
 }

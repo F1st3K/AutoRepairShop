@@ -1,10 +1,10 @@
-﻿using AutoRepairShop.Core.Entities.Interfaces;
-
-namespace AutoRepairShop.Core.Entities
+﻿namespace AutoRepairShop.Core.dtos
 {
-    class UserInfo : IEntity
+    class RegDto
     {
-        public int Id { get; set; }
+        public string UniqName { get; set; }
+        public string Password { get; set; }
+        public int RoleId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronomic { get; set; }

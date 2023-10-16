@@ -2,7 +2,13 @@
 
 namespace AutoRepairShop.Core.Entity
 {
-    class User : IEntity
+    class User : IEntity, IUniqNamed
     {
+        public int Id { get; set; }
+        public string UniqName { get; set; }
+        public string Hash { get; set; }
+        public int RoleId { get; set; }
+        public int InfoId { get; set; }
+
     }
 }
