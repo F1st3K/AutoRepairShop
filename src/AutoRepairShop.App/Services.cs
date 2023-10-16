@@ -5,8 +5,7 @@ namespace AutoRepairShop.App
 {
     static class Services
     {
-        public static AuthService<UserRepository, UserInfoRepository> AuthService =>
-            new AuthService<UserRepository, UserInfoRepository>(
-                new UserRepository(), new UserInfoRepository());
+        public static AuthService<UserRepository, UserInfoRepository> AuthService { get; set; }
+            
     }
 }
