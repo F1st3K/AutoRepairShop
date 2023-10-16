@@ -45,15 +45,15 @@ namespace AutoRepairShop.Data
             _dbConection.Close();
         }
 
-        public DataTable QueryReturn(string query, params MySqlParameter[] parameters)
+        public DataTable QueryReturn(string query, params object[] parameters)
         {
             DataTable table = new DataTable();
             try
             {
                 _dbConection.Open();
                 MySqlCommand command = new MySqlCommand(query, _dbConection);
-                foreach (var param in parameters)
-                    command.Parameters.Add(param);
+                for (int i = 0; i < parameters.Length; i++)
+                    command.Parameters.AddWithValue("@" + i, parameters[i]);
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command);
                 dataAdapter.Fill(table);
             }
@@ -65,14 +65,14 @@ namespace AutoRepairShop.Data
             return table;
         }
 
-        public void QueryExecute(string query, params MySqlParameter[] parameters)
+        public void QueryExecute(string query, params object[] parameters)
         {
             try
             {
                 _dbConection.Open();
                 MySqlCommand command = new MySqlCommand(query, _dbConection);
-                foreach (var param in parameters)
-                    command.Parameters.Add(param);
+                for (int i = 0; i < parameters.Length; i++)
+                    command.Parameters.AddWithValue("@" + i, parameters[i]);
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)

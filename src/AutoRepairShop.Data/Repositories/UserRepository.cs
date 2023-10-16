@@ -7,22 +7,49 @@ namespace AutoRepairShop.Data.Repositories
     {
         public int Add(User entity)
         {
-            throw new System.NotImplementedException();
+            var query = "INSERT INTO `auto_repair_shop`.`users` " +
+                "(`Login`, `Hash`, `RoleId`, `InfoId`) " +
+                "VALUES (@0, @1, @2, @3);" +
+                "SELECT LAST_INSERT_ID();";
+            var table = DataContext.GetInstance().QueryReturn(query,
+                entity.UniqName, entity.Hash, entity.RoleId, entity.InfoId);
+            return (int)table.Rows[0][0];
         }
 
         public bool IsUniq(string uname)
         {
-            throw new System.NotImplementedException();
+            var query = "SELECT * FROM `auto_repair_shop`.`users` WHERE `Login` LIKE @0;";
+            var table = DataContext.GetInstance().QueryReturn(query, uname);
+            return table.Rows.Count <= 0;
         }
 
         public bool TryGet(int id, out User entity)
         {
-            throw new System.NotImplementedException();
+            entity = null;
+            var query = "SELECT * FROM `auto_repair_shop`.`users` WHERE `Id` LIKE @0;";
+            var table = DataContext.GetInstance().QueryReturn(query, id);
+            if (table.Rows.Count <= 0)
+                return false;
+            entity = new User
+            {
+                Id = (int)table.Rows[0][0],
+                UniqName = (string)table.Rows[0][1],
+                Hash = (string)table.Rows[0][2],
+                RoleId = (int)table.Rows[0][3],
+                InfoId = (int)table.Rows[0][4]
+            };
+            return true;
         }
 
         public bool TryGetId(string uname, out int id)
         {
-            throw new System.NotImplementedException();
+            id = 0;
+            var query = "SELECT `Id` FROM `auto_repair_shop`.`users` WHERE `Login` LIKE @0;";
+            var table = DataContext.GetInstance().QueryReturn(query, uname);
+            if (table.Rows.Count <= 0)
+                return false;
+            id = (int)table.Rows[0][0];
+            return true;
         }
     }
 }
