@@ -2,9 +2,9 @@
 {
     public enum Roles
     {
+        NoAuth,
         Admin,
         Manager,
-        User,
-        NoAuth
+        User
     }
 }

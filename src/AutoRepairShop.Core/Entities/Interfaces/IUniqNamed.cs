@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoRepairShop.Core.Entities.Interfaces
 {
-    interface IUniqNamed
+    public interface IUniqNamed
     {
         string UniqName { get; set; }
     }

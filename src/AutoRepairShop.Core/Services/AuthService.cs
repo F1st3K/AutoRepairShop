@@ -5,7 +5,7 @@ using AutoRepairShop.Core.Repositories;
 
 namespace AutoRepairShop.Core.Services
 {
-    class AuthService<TUserRepository, TUserInfoRepository>
+    public class AuthService<TUserRepository, TUserInfoRepository>
         where TUserRepository : IRepository<User>, IUniqNameRepository<User>
         where TUserInfoRepository : IRepository<UserInfo>
     {
@@ -20,11 +20,15 @@ namespace AutoRepairShop.Core.Services
             _hashService = new HashService();
         }
 
-        public bool TrySignIn(AuthDto dto)
+        public bool TrySignIn(AuthDto dto, out UserInfo userInfo, out int roleId)
         {
+            userInfo = null;
+            roleId = 0;
             if (_userRepository.TryGetId(dto.Login, out var id) == false ||
                 _userRepository.TryGet(id, out var user) == false)
                 return false;
+            _userInfoRepository.TryGet(user.InfoId,out userInfo);
+            roleId = user.RoleId;
             return user.Hash == _hashService.Hash(dto.Password);
         }
 

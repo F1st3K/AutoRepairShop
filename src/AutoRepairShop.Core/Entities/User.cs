@@ -2,7 +2,7 @@
 
 namespace AutoRepairShop.Core.Entity
 {
-    class User : IEntity, IUniqNamed
+    public class User : IEntity, IUniqNamed
     {
         public int Id { get; set; }
         public string UniqName { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutoRepairShop.Core.Repositories
 {
-    interface IUniqNameRepository<TEntity>
+    public interface IUniqNameRepository<TEntity>
         where TEntity : IUniqNamed
     {
         bool TryGetId(string uname, out int id);

@@ -1,6 +1,6 @@
 ﻿namespace AutoRepairShop.Core.dtos
 {
-    class RegDto
+    public class RegDto
     {
         public string UniqName { get; set; }
         public string Password { get; set; }
