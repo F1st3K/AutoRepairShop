@@ -19,12 +19,5 @@ namespace AutoRepairShop.App.View.Forms
             InitializeComponent();
             this.Init();
         }
-
-        public MainForm(Roles role, int uid) : this()
-        {
-            _role = role;
-            if (_role == Roles.NoAuth) return;
-            
-        }
     }
 }

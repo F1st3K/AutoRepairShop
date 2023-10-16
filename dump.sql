@@ -26,12 +26,12 @@ DROP TABLE IF EXISTS `orderproducts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orderproducts` (
   `OrderId` int(11) NOT NULL,
-  `ProductArcticle` varchar(100) NOT NULL,
+  `ProductId` int(11) NOT NULL,
   `Count` int(11) NOT NULL,
-  PRIMARY KEY (`OrderId`,`ProductArcticle`),
-  KEY `Product_idx` (`ProductArcticle`),
+  PRIMARY KEY (`OrderId`,`ProductId`),
+  KEY `Product_idx` (`ProductId`),
   CONSTRAINT `Order` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`Id`),
-  CONSTRAINT `Product` FOREIGN KEY (`ProductArcticle`) REFERENCES `products` (`Article`)
+  CONSTRAINT `Product` FOREIGN KEY (`ProductId`) REFERENCES `products` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -158,6 +158,7 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Article` varchar(100) NOT NULL,
   `Name` text NOT NULL,
   `Description` text,
@@ -168,15 +169,16 @@ CREATE TABLE `products` (
   `QuantityInStock` int(11) NOT NULL,
   `Discount` decimal(4,4) NOT NULL,
   `Price` int(11) NOT NULL,
-  PRIMARY KEY (`Article`),
+  PRIMARY KEY (`Id`),
   UNIQUE KEY `Article_UNIQUE` (`Article`),
+  UNIQUE KEY `Id_UNIQUE` (`Id`),
   KEY `CategoryId_idx` (`CategoryId`),
   KEY `ManufacturerId_idx` (`ManufacturerId`),
   KEY `UnitId_idx` (`UnitId`),
   CONSTRAINT `CategoryId` FOREIGN KEY (`CategoryId`) REFERENCES `productcategories` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ManufacturerId` FOREIGN KEY (`ManufacturerId`) REFERENCES `productmanufacturers` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `UnitId` FOREIGN KEY (`UnitId`) REFERENCES `productunits` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +187,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('A782R4','Аккумулятор','Аккумулятор автомобильный 3 55р','A782R4.jpg',3,3,1,24,0.2500,4500),('D374E4','Съемник подшипников','Съемник 2 AT-GP2-05','D374E4.jpeg',2,2,1,2,0.1300,1400),('D799T6','Съемник подшипников','Съемник для подшипников 8 9000','picture.png',2,8,1,6,0.2500,1800),('E679R3','Автошампунь','Автошампунь 9 800026 Active Foam Truck','picture.png',6,9,1,14,0.1000,4000),('E932T8','Полироль','Полироль 9 125101 Black Brilliance','picture.png',6,9,1,23,0.0700,2100),('F026R4','Антифриз','Антифриз сине-зеленый 13 ANTIFREEZE EXTRA','picture.png',6,13,1,13,0.1500,530),('F938T5','Антифриз','Антифриз красный 7 LLC01212','picture.png',6,7,1,34,0.1500,1200),('H572T6','Парктроник','Парктроник 2 APS-8L-02','picture.png',3,2,1,12,0.1000,2900),('K702L6','Ключ','Ключ 5 W233032 (30 / 32 мм)','picture.png',4,5,1,9,0.1000,1600),('K830R4','Колпак для колеса','Колпак для колеса 2 Супер Астра R16 серебристый 2шт','K830R4.jpg',3,2,2,14,0.3100,915),('K849L6','Набор ключей','Набор ключей накидных 4 00-00010990 61','K849L6.jpeg',4,4,2,23,0.1000,780),('L802Y5','Лопата','Лопата саперная 2 AB-S-03','picture.png',5,2,1,23,0.1000,870),('O393R4','Отвертка','Отвертка 5 D04P2100','O393R4.jpeg',4,5,1,14,0.1200,460),('P023T2','Провода прикуривания','Провода прикуривания в сумке 10 CABLE 700 4,5м','picture.png',3,10,1,6,0.2500,3400),('P307T5','Провода прикуривания','Провода прикуривания в сумке 14 400А 2,5м','picture.png',3,14,1,2,0.2500,700),('S021R4','Адаптер для щеток','Адаптер для щеток стеклоочистителя 12 Top Lock A/C блистер 2 шт','picture.png',3,12,2,13,0.2400,200),('S037R9','Щетка','Щётка 2 AB-H-03','S037R9.jpeg',5,2,1,26,0.2000,740),('S625T5','Щетка','щетка стеклоочистителя 12 Start 16\"/40см каркасная\"','picture.png',3,12,1,12,0.1200,249),('S826R4','Щетка','Щетка стеклоочистителя 12 Super flat 19\"/48см бескаркасная\"','picture.png',3,12,1,28,0.2000,530),('S983R4','Щетка','Щетка с/о 6 ECO 65C 650мм каркасная','S983R4.jpg',3,6,1,8,0.3000,500),('V892T6','Свеча зажигания','Свеча зажигания 11 IGP F7RTC','picture.png',3,11,1,21,0.1500,130),('Z326T9','Зарядное устройство','Устройство зарядное 14 ЗУ-300 6/12В 3,8А','picture.png',1,14,1,14,0.1000,2400),('Z374R3','Зарядное устройство','Зарядное устройство 2 ACH-15A-08','Z374R3.jpeg',1,2,1,14,0.1500,4600),('Z469T7','Устройство пуско-зарядное','Устройство пуско-зарядное 2 12В 8000мАч 350А','Z469T7.jpg',1,2,1,4,0.2500,4000),('Z472R4','Зарядное устройство','Зарядное устройство 1 KBCН 4','Z472R4.jpeg',1,1,1,6,0.1200,1250);
+INSERT INTO `products` VALUES (1,'A782R4','Аккумулятор','Аккумулятор автомобильный 3 55р','A782R4.jpg',3,3,1,24,0.2500,4500),(2,'D374E4','Съемник подшипников','Съемник 2 AT-GP2-05','D374E4.jpeg',2,2,1,2,0.1300,1400),(3,'D799T6','Съемник подшипников','Съемник для подшипников 8 9000','picture.png',2,8,1,6,0.2500,1800),(4,'E679R3','Автошампунь','Автошампунь 9 800026 Active Foam Truck','picture.png',6,9,1,14,0.1000,4000),(5,'E932T8','Полироль','Полироль 9 125101 Black Brilliance','picture.png',6,9,1,23,0.0700,2100),(6,'F026R4','Антифриз','Антифриз сине-зеленый 13 ANTIFREEZE EXTRA','picture.png',6,13,1,13,0.1500,530),(7,'F938T5','Антифриз','Антифриз красный 7 LLC01212','picture.png',6,7,1,34,0.1500,1200),(8,'H572T6','Парктроник','Парктроник 2 APS-8L-02','picture.png',3,2,1,12,0.1000,2900),(9,'K702L6','Ключ','Ключ 5 W233032 (30 / 32 мм)','picture.png',4,5,1,9,0.1000,1600),(10,'K830R4','Колпак для колеса','Колпак для колеса 2 Супер Астра R16 серебристый 2шт','K830R4.jpg',3,2,2,14,0.3100,915),(11,'K849L6','Набор ключей','Набор ключей накидных 4 00-00010990 61','K849L6.jpeg',4,4,2,23,0.1000,780),(12,'L802Y5','Лопата','Лопата саперная 2 AB-S-03','picture.png',5,2,1,23,0.1000,870),(13,'O393R4','Отвертка','Отвертка 5 D04P2100','O393R4.jpeg',4,5,1,14,0.1200,460),(14,'P023T2','Провода прикуривания','Провода прикуривания в сумке 10 CABLE 700 4,5м','picture.png',3,10,1,6,0.2500,3400),(15,'P307T5','Провода прикуривания','Провода прикуривания в сумке 14 400А 2,5м','picture.png',3,14,1,2,0.2500,700),(16,'S021R4','Адаптер для щеток','Адаптер для щеток стеклоочистителя 12 Top Lock A/C блистер 2 шт','picture.png',3,12,2,13,0.2400,200),(17,'S037R9','Щетка','Щётка 2 AB-H-03','S037R9.jpeg',5,2,1,26,0.2000,740),(18,'S625T5','Щетка','щетка стеклоочистителя 12 Start 16\"/40см каркасная\"','picture.png',3,12,1,12,0.1200,249),(19,'S826R4','Щетка','Щетка стеклоочистителя 12 Super flat 19\"/48см бескаркасная\"','picture.png',3,12,1,28,0.2000,530),(20,'S983R4','Щетка','Щетка с/о 6 ECO 65C 650мм каркасная','S983R4.jpg',3,6,1,8,0.3000,500),(21,'V892T6','Свеча зажигания','Свеча зажигания 11 IGP F7RTC','picture.png',3,11,1,21,0.1500,130),(22,'Z326T9','Зарядное устройство','Устройство зарядное 14 ЗУ-300 6/12В 3,8А','picture.png',1,14,1,14,0.1000,2400),(23,'Z374R3','Зарядное устройство','Зарядное устройство 2 ACH-15A-08','Z374R3.jpeg',1,2,1,14,0.1500,4600),(24,'Z469T7','Устройство пуско-зарядное','Устройство пуско-зарядное 2 12В 8000мАч 350А','Z469T7.jpg',1,2,1,4,0.2500,4000),(25,'Z472R4','Зарядное устройство','Зарядное устройство 1 KBCН 4','Z472R4.jpeg',1,1,1,6,0.1200,1250);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-15 17:01:08
+-- Dump completed on 2023-10-16 11:21:43
