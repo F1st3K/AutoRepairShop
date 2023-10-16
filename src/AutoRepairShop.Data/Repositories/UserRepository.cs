@@ -1,5 +1,6 @@
 ﻿using AutoRepairShop.Core.Entity;
 using AutoRepairShop.Core.Repositories;
+using System;
 
 namespace AutoRepairShop.Data.Repositories
 {
@@ -12,8 +13,8 @@ namespace AutoRepairShop.Data.Repositories
                 "VALUES (@0, @1, @2, @3);" +
                 "SELECT LAST_INSERT_ID();";
             var table = DataContext.GetInstance().QueryReturn(query,
-                entity.UniqName, entity.Hash, entity.RoleId, entity.InfoId);
-            return (int)table.Rows[0][0];
+                new object[] { entity.UniqName, entity.Hash, entity.RoleId, entity.InfoId });
+            return Convert.ToInt32(table.Rows[0][0]);
         }
 
         public bool IsUniq(string uname)

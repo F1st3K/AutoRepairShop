@@ -13,8 +13,8 @@ namespace AutoRepairShop.Data.Repositories
                 "VALUES (@0, @1, @2, @3, @4);" +
                 "SELECT LAST_INSERT_ID();";
             var table = DataContext.GetInstance().QueryReturn(query,
-                entity.Name, entity.Surname, entity.Patronomic, entity.DOB, entity.Phone);
-            return (int)table.Rows[0][0];
+                new object[] { entity.Name, entity.Surname, entity.Patronomic, entity.DOB, entity.Phone });
+            return Convert.ToInt32(table.Rows[0][0]);
         }
 
         public bool TryGet(int id, out UserInfo entity)
@@ -30,9 +30,11 @@ namespace AutoRepairShop.Data.Repositories
                 Name = (string)table.Rows[0][1],
                 Surname = (string)table.Rows[0][2],
                 Patronomic = (string)table.Rows[0][3],
-                DOB = ((DateTime)table.Rows[0][4]).ToString("yyyy-MM-dd"),
+                DOB = (string)table.Rows[0][4],
                 Phone = (string)table.Rows[0][5]
             };
+            if (DateTime.TryParse(entity.DOB, out var dob))
+                entity.DOB = dob.ToString("yyyy-MM-dd");
             return true;
         }
     }

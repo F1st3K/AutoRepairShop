@@ -109,6 +109,7 @@ namespace AutoRepairShop.App.View.Forms
             this.dobText.Size = new System.Drawing.Size(203, 31);
             this.dobText.TabIndex = 7;
             this.dobText.ValidatingType = typeof(System.DateTime);
+            this.dobText.TextChanged += new System.EventHandler(this.passwordText_TextChanged);
             // 
             // label4
             // 
@@ -245,7 +246,7 @@ namespace AutoRepairShop.App.View.Forms
             this.Controls.Add(this.nameText);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "RegForm";
             this.Text = "Регистрация";
             this.ResumeLayout(false);
