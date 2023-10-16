@@ -17,5 +17,26 @@ namespace AutoRepairShop.App.View.Forms
             InitializeComponent();
             this.Init();
         }
+
+        private void registrationButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.SwitchToBackForm();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            Application.Exit();
+        }
+
+        private void passwordText_TextChanged(object sender, EventArgs e)
+        {
+            registrationButton.Enabled = passwordText.Text == rememberPaswordText.Text;
+        }
     }
 }

@@ -60,6 +60,7 @@ namespace AutoRepairShop.App.View.Forms
             // 
             this.passwordText.Location = new System.Drawing.Point(39, 110);
             this.passwordText.Name = "passwordText";
+            this.passwordText.PasswordChar = '●';
             this.passwordText.Size = new System.Drawing.Size(212, 31);
             this.passwordText.TabIndex = 3;
             // 
@@ -138,7 +139,7 @@ namespace AutoRepairShop.App.View.Forms
             this.Controls.Add(this.loginText);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AuthForm";
             this.Text = "Авторизация";
             this.Shown += new System.EventHandler(this.AuthForm_Shown);
