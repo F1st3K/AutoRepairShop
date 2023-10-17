@@ -2,7 +2,6 @@
 using AutoRepairShop.Core.Entities.Interfaces;
 using AutoRepairShop.Core.Mappers;
 using AutoRepairShop.Core.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,7 +24,18 @@ namespace AutoRepairShop.Core.Services
 
         public void UpdateData()
         {
-            
+            _allData = new List<TEntity>(_repository.GetAll());
+        }
+
+        public TEntity[] Select(int count, int startIndex = 0)
+        {
+            var data = new List<TEntity>(_allData.ToArray());
+
+            var lastIndex = data.Count - 1 < 0 ? 0 : data.Count - 1;
+            startIndex = startIndex < data.Count ? startIndex : lastIndex;
+            count = count + startIndex > data.Count ? data.Count - startIndex : count;
+
+            return data.GetRange(startIndex, count).ToArray();
         }
 
         public TEntity[] Select(SelectDto dto, int count, int startIndex = 0)
@@ -33,10 +43,15 @@ namespace AutoRepairShop.Core.Services
             var data = new List<TEntity>(_allData.ToArray());
             if (dto.Filter != string.Empty)
                 data = Filter(data, dto.Filter, dto.FilterColumn);
-            if (dto.Filter != string.Empty)
+            if (dto.Sort != SelectDto.TypeSort.Null)
                 data = Sort(data, dto.Sort, dto.SortColumn);
-            if (dto.Filter != string.Empty)
-                data = Search(data, dto.Filter, dto.FilterColumn);
+            if (dto.Search != string.Empty)
+                data = Search(data, dto.Search, dto.SearchColumn);
+
+            var lastIndex = data.Count - 1 < 0 ? 0 : data.Count - 1;
+            startIndex = startIndex < data.Count ? startIndex : lastIndex;
+            count = count + startIndex > data.Count ? data.Count - startIndex : count;
+
             return data.GetRange(startIndex, count).ToArray();
         }
 
@@ -53,14 +68,15 @@ namespace AutoRepairShop.Core.Services
             var data = array.ConvertAll(entity => _mapper.ToString(entity));
             data.Sort((x, y) =>
             {
-                switch (sort)
-                {
-                    case SelectDto.TypeSort.ACS:
-                        return string.Compare(x[column], y[column], true);
-                    case SelectDto.TypeSort.DECS:
-                        return string.Compare(y[column], x[column], true);
-                }
-                return 0;
+                if (sort == SelectDto.TypeSort.DECS)
+                    { var t = x; x = y; y = t; }
+                bool xIsNumber = int.TryParse(x[column], out int xNumber);
+                bool yIsNumber = int.TryParse(y[column], out int yNumber);
+
+                if (xIsNumber && yIsNumber)
+                    return xNumber.CompareTo(yNumber);
+                else
+                    return x[column].CompareTo(y[column]);
             });
             array = data.ToList().ConvertAll(entity => _mapper.ToEntity(entity));
             return array;

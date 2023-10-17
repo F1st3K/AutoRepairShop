@@ -1,4 +1,5 @@
 ﻿using AutoRepairShop.Core.Entities;
+using AutoRepairShop.Core.Entities.Interfaces;
 using AutoRepairShop.Core.Mappers;
 using AutoRepairShop.Core.Repositories;
 using AutoRepairShop.Data.Mappers;
@@ -8,6 +9,8 @@ namespace AutoRepairShop.Data.Repositories
 {
     public class UserInfoRepository : IRepository<UserInfo>
     {
+        public IStringMapper<UserInfo> Mapper => new UserInfoMapper();
+
         public int Add(UserInfo entity)
         {
             var query = "INSERT INTO `auto_repair_shop`.`usersinfo` " +
@@ -19,6 +22,16 @@ namespace AutoRepairShop.Data.Repositories
             return Convert.ToInt32(table[0][0]);
         }
 
+        public UserInfo[] GetAll()
+        {
+            var query = "SELECT * FROM `auto_repair_shop`.`usersinfo`;";
+            var table = DataContext.GetInstance().QueryReturn(query);
+            var entities = new UserInfo[table.Length];
+            for (int i = 0; i < table.Length; i++)
+                entities[i] = Mapper.ToEntity(table[i]);
+            return entities;
+        }
+
         public bool TryGet(int id, out UserInfo entity)
         {
             entity = null;
@@ -26,7 +39,7 @@ namespace AutoRepairShop.Data.Repositories
             var table = DataContext.GetInstance().QueryReturn(query, id);
             if (table.Length <= 0)
                 return false;
-            entity = UserInfoMapper.Mappers.ToEntity(table[0]);
+            entity = Mapper.ToEntity(table[0]);
             return true;
         }
     }

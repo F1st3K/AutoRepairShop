@@ -54,6 +54,7 @@
     <Compile Include="Repositories\IUniqNameRepository.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\HashService.cs" />
+    <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\SmartSelectService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,7 @@
 ﻿using AutoRepairShop.App.View.Forms;
 using AutoRepairShop.Core.Services;
 using AutoRepairShop.Data;
+using AutoRepairShop.Data.Mappers;
 using AutoRepairShop.Data.Repositories;
 using System;
 using System.Windows.Forms;
@@ -26,9 +27,17 @@ namespace AutoRepairShop.App
                 "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk));
 
             DataContext.GetInstance().TestConnection();
+
             //dependensy for AuthService
             Services.AuthService = new AuthService<UserRepository, UserInfoRepository>(
                 new UserRepository(), new UserInfoRepository());
+
+            //dependensy for SmartSelectService
+            Services.UserInfoSelectService = new SmartSelectService<Core.Entities.UserInfo>(
+                new UserInfoRepository(), new UserInfoMapper());
+
+            Services.UserSelectService = new SmartSelectService<Core.Entities.User>(
+                new UserRepository(), new UserMapper());
 
             //Run application
             Application.EnableVisualStyles();

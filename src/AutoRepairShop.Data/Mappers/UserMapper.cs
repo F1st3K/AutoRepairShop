@@ -3,7 +3,7 @@ using AutoRepairShop.Core.Mappers;
 
 namespace AutoRepairShop.Data.Mappers
 {
-    class UserMapper : IStringMapper<User>
+    public class UserMapper : IStringMapper<User>
     {
         public User ToEntity(string[] entity)
         {

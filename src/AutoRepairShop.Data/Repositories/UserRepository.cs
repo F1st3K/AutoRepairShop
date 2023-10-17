@@ -39,6 +39,16 @@ namespace AutoRepairShop.Data.Repositories
             return true;
         }
 
+        public User[] GetAll()
+        {
+            var query = "SELECT * FROM `auto_repair_shop`.`users`;";
+            var table = DataContext.GetInstance().QueryReturn(query);
+            var entities = new User[table.Length];
+            for (int i = 0; i < table.Length; i++)
+                entities[i] = Mapper.ToEntity(table[i]);
+            return entities;
+        }
+
         public bool TryGetId(string uname, out int id)
         {
             id = 0;

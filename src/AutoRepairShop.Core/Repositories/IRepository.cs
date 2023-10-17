@@ -9,5 +9,6 @@ namespace AutoRepairShop.Core.Repositories
         IStringMapper<TEntity> Mapper { get; }
         bool TryGet(int id, out TEntity entity);
         int Add(TEntity entity);
+        TEntity[] GetAll();
     }
 }
