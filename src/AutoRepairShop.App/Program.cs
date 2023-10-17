@@ -31,11 +31,12 @@ namespace AutoRepairShop.App
             //dependensy for AuthService
             Services.AuthService = new AuthService<UserRepository, UserInfoRepository>(
                 new UserRepository(), new UserInfoRepository());
+            Services.UserService = new UserService<UserRepository, UserInfoRepository>(
+                new UserRepository(), new UserInfoRepository());
 
             //dependensy for SmartSelectService
             Services.UserInfoSelectService = new SmartSelectService<Core.Entities.UserInfo>(
                 new UserInfoRepository(), new UserInfoMapper());
-
             Services.UserSelectService = new SmartSelectService<Core.Entities.User>(
                 new UserRepository(), new UserMapper());
 

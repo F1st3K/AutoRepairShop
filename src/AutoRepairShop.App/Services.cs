@@ -11,5 +11,7 @@ namespace AutoRepairShop.App
         public static SmartSelectService<UserInfo> UserInfoSelectService { get; set; }
 
         public static SmartSelectService<User> UserSelectService { get; set; }
+
+        public static UserService<UserRepository, UserInfoRepository> UserService { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace AutoRepairShop.Core.Repositories
         bool TryGet(int id, out TEntity entity);
         int Add(TEntity entity);
         TEntity[] GetAll();
+        void Delete(int id);
+        void Edit(TEntity entity);
     }
 }

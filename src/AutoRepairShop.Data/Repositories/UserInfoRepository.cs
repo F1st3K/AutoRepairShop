@@ -22,6 +22,16 @@ namespace AutoRepairShop.Data.Repositories
             return Convert.ToInt32(table[0][0]);
         }
 
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(UserInfo entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public UserInfo[] GetAll()
         {
             var query = "SELECT * FROM `auto_repair_shop`.`usersinfo`;";

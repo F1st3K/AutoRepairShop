@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoRepairShop.Core.dtos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace AutoRepairShop.App.View.Forms
 {
     public partial class EditUserForm : Form
     {
-        public EditUserForm()
+        public EditUserForm(UserDto user)
         {
             InitializeComponent();
             this.Init();

@@ -44,6 +44,7 @@
     <Compile Include="dtos\AuthDto.cs" />
     <Compile Include="dtos\RegDto.cs" />
     <Compile Include="dtos\SelectDto.cs" />
+    <Compile Include="dtos\UserDto.cs" />
     <Compile Include="Entities\Interfaces\IEntity.cs" />
     <Compile Include="Entities\Interfaces\IUniqNamed.cs" />
     <Compile Include="Entities\User.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Services\HashService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\SmartSelectService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

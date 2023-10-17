@@ -106,6 +106,7 @@ namespace AutoRepairShop.App.View.Forms
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(1156, 477);
             this.dataGridView.TabIndex = 6;
+            this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             // 
             // label4
             // 
@@ -212,6 +213,7 @@ namespace AutoRepairShop.App.View.Forms
             this.addButton.TabIndex = 19;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // searchField
             // 
@@ -281,6 +283,7 @@ namespace AutoRepairShop.App.View.Forms
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "UsersForm";
             this.Text = "Пользователи";
+            this.Load += new System.EventHandler(this.UsersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -58,5 +58,15 @@ namespace AutoRepairShop.Data.Repositories
                 return false;
             return true;
         }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Edit(User entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
