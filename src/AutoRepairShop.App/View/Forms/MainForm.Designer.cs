@@ -99,6 +99,7 @@ namespace AutoRepairShop.App.View.Forms
             this.usersButton.Text = "Пользователи";
             this.usersButton.UseVisualStyleBackColor = true;
             this.usersButton.Visible = false;
+            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
             // 
             // ordersButton
             // 
@@ -133,7 +134,7 @@ namespace AutoRepairShop.App.View.Forms
             this.exitButton.Location = new System.Drawing.Point(81, 412);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(320, 37);
-            this.exitButton.TabIndex = 9;
+            this.exitButton.TabIndex = 12;
             this.exitButton.Text = "Выйти";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
@@ -175,7 +176,7 @@ namespace AutoRepairShop.App.View.Forms
             this.Controls.Add(this.roleText);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("MS Reference Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "Главная";
             this.ResumeLayout(false);

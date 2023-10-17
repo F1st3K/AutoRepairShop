@@ -50,5 +50,10 @@ namespace AutoRepairShop.App.View.Forms
             this.SwitchToBackForm();
             State.ClearUserState();
         }
+
+        private void usersButton_Click(object sender, System.EventArgs e)
+        {
+            this.SwitchFormTo(new UsersForm());
+        }
     }
 }

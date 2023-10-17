@@ -17,5 +17,10 @@ namespace AutoRepairShop.App.View.Forms
             InitializeComponent();
             this.Init();
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.SwitchToBackForm();
+        }
     }
 }
