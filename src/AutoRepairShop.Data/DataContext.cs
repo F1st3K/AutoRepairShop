@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Data;
+using System.Collections.Generic;
 
 namespace AutoRepairShop.Data
 {
@@ -45,24 +45,32 @@ namespace AutoRepairShop.Data
             _dbConection.Close();
         }
 
-        public DataTable QueryReturn(string query, params object[] parameters)
+        public string[][] QueryReturn(string query, params object[] parameters)
         {
-            DataTable table = new DataTable();
+            var table = new List<List<string>>();
             try
             {
                 _dbConection.Open();
                 MySqlCommand command = new MySqlCommand(query, _dbConection);
                 for (int i = 0; i < parameters.Length; i++)
                     command.Parameters.AddWithValue("@" + i, parameters[i]);
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command);
-                dataAdapter.Fill(table);
+                var reader = command.ExecuteReader();
+                int numCols = reader.FieldCount;
+                for (int i = 0; reader.Read(); i++)
+                {
+                    var row = new List<string>();
+                    for (int j = 0; j < numCols; j++)
+                        row.Add(reader.GetString(j));
+                    table.Add(row);
+                }
+                    
             }
             catch (Exception ex)
             {
                 Logger(ex.Message + "\n" + query);
             }
             _dbConection.Close();
-            return table;
+            return table.ConvertAll(row => row.ToArray()).ToArray();
         }
 
         public void QueryExecute(string query, params object[] parameters)

@@ -46,6 +46,7 @@ namespace AutoRepairShop.App.View.Forms
             this.currentPaggination = new System.Windows.Forms.LinkLabel();
             this.nextPaggination = new System.Windows.Forms.LinkLabel();
             this.endPaggination = new System.Windows.Forms.LinkLabel();
+            this.addButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,7 +134,7 @@ namespace AutoRepairShop.App.View.Forms
             // startPaggination
             // 
             this.startPaggination.AutoSize = true;
-            this.startPaggination.Location = new System.Drawing.Point(890, 561);
+            this.startPaggination.Location = new System.Drawing.Point(881, 561);
             this.startPaggination.Name = "startPaggination";
             this.startPaggination.Size = new System.Drawing.Size(42, 24);
             this.startPaggination.TabIndex = 12;
@@ -144,20 +145,20 @@ namespace AutoRepairShop.App.View.Forms
             // 
             this.label6.Location = new System.Drawing.Point(784, 561);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 30);
+            this.label6.Size = new System.Drawing.Size(91, 30);
             this.label6.TabIndex = 13;
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(1078, 561);
+            this.label7.Location = new System.Drawing.Point(1069, 561);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 30);
+            this.label7.Size = new System.Drawing.Size(103, 30);
             this.label7.TabIndex = 14;
             // 
             // backPaggination
             // 
             this.backPaggination.AutoSize = true;
-            this.backPaggination.Location = new System.Drawing.Point(938, 561);
+            this.backPaggination.Location = new System.Drawing.Point(929, 561);
             this.backPaggination.Name = "backPaggination";
             this.backPaggination.Size = new System.Drawing.Size(26, 24);
             this.backPaggination.TabIndex = 15;
@@ -167,7 +168,7 @@ namespace AutoRepairShop.App.View.Forms
             // currentPaggination
             // 
             this.currentPaggination.AutoSize = true;
-            this.currentPaggination.Location = new System.Drawing.Point(970, 561);
+            this.currentPaggination.Location = new System.Drawing.Point(961, 561);
             this.currentPaggination.Name = "currentPaggination";
             this.currentPaggination.Size = new System.Drawing.Size(22, 24);
             this.currentPaggination.TabIndex = 16;
@@ -178,7 +179,7 @@ namespace AutoRepairShop.App.View.Forms
             // nextPaggination
             // 
             this.nextPaggination.AutoSize = true;
-            this.nextPaggination.Location = new System.Drawing.Point(998, 561);
+            this.nextPaggination.Location = new System.Drawing.Point(989, 561);
             this.nextPaggination.Name = "nextPaggination";
             this.nextPaggination.Size = new System.Drawing.Size(26, 24);
             this.nextPaggination.TabIndex = 17;
@@ -189,7 +190,7 @@ namespace AutoRepairShop.App.View.Forms
             // endPaggination
             // 
             this.endPaggination.AutoSize = true;
-            this.endPaggination.Location = new System.Drawing.Point(1030, 561);
+            this.endPaggination.Location = new System.Drawing.Point(1021, 561);
             this.endPaggination.Name = "endPaggination";
             this.endPaggination.Size = new System.Drawing.Size(42, 24);
             this.endPaggination.TabIndex = 18;
@@ -197,11 +198,21 @@ namespace AutoRepairShop.App.View.Forms
             this.endPaggination.Text = ">>";
             this.endPaggination.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(788, 607);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(376, 42);
+            this.addButton.TabIndex = 19;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = true;
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.endPaggination);
             this.Controls.Add(this.nextPaggination);
             this.Controls.Add(this.currentPaggination);
@@ -248,5 +259,6 @@ namespace AutoRepairShop.App.View.Forms
         private System.Windows.Forms.LinkLabel currentPaggination;
         private System.Windows.Forms.LinkLabel nextPaggination;
         private System.Windows.Forms.LinkLabel endPaggination;
+        private System.Windows.Forms.Button addButton;
     }
 }

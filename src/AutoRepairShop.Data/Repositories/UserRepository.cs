@@ -1,11 +1,15 @@
-﻿using AutoRepairShop.Core.Entity;
+﻿using AutoRepairShop.Core.Entities;
+using AutoRepairShop.Core.Mappers;
 using AutoRepairShop.Core.Repositories;
+using AutoRepairShop.Data.Mappers;
 using System;
 
 namespace AutoRepairShop.Data.Repositories
 {
     public class UserRepository : IRepository<User>, IUniqNameRepository<User>
     {
+        public IStringMapper<User> Mapper => new UserMapper();
+
         public int Add(User entity)
         {
             var query = "INSERT INTO `auto_repair_shop`.`users` " +
@@ -14,14 +18,14 @@ namespace AutoRepairShop.Data.Repositories
                 "SELECT LAST_INSERT_ID();";
             var table = DataContext.GetInstance().QueryReturn(query,
                 new object[] { entity.UniqName, entity.Hash, entity.RoleId, entity.InfoId });
-            return Convert.ToInt32(table.Rows[0][0]);
+            return Convert.ToInt32(table[0][0]);
         }
 
         public bool IsUniq(string uname)
         {
             var query = "SELECT * FROM `auto_repair_shop`.`users` WHERE `Login` LIKE @0;";
             var table = DataContext.GetInstance().QueryReturn(query, uname);
-            return table.Rows.Count <= 0;
+            return table.Length <= 0;
         }
 
         public bool TryGet(int id, out User entity)
@@ -29,16 +33,9 @@ namespace AutoRepairShop.Data.Repositories
             entity = null;
             var query = "SELECT * FROM `auto_repair_shop`.`users` WHERE `Id` LIKE @0;";
             var table = DataContext.GetInstance().QueryReturn(query, id);
-            if (table.Rows.Count <= 0)
+            if (table.Length <= 0)
                 return false;
-            entity = new User
-            {
-                Id = (int)table.Rows[0][0],
-                UniqName = (string)table.Rows[0][1],
-                Hash = (string)table.Rows[0][2],
-                RoleId = (int)table.Rows[0][3],
-                InfoId = (int)table.Rows[0][4]
-            };
+            entity = Mapper.ToEntity(table[0]);
             return true;
         }
 
@@ -47,9 +44,8 @@ namespace AutoRepairShop.Data.Repositories
             id = 0;
             var query = "SELECT `Id` FROM `auto_repair_shop`.`users` WHERE `Login` LIKE @0;";
             var table = DataContext.GetInstance().QueryReturn(query, uname);
-            if (table.Rows.Count <= 0)
+            if (table.Length <= 0 || int.TryParse(table[0][0], out id) == false)
                 return false;
-            id = (int)table.Rows[0][0];
             return true;
         }
     }

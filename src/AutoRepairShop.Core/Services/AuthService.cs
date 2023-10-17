@@ -1,6 +1,5 @@
 ﻿using AutoRepairShop.Core.dtos;
 using AutoRepairShop.Core.Entities;
-using AutoRepairShop.Core.Entity;
 using AutoRepairShop.Core.Repositories;
 
 namespace AutoRepairShop.Core.Services
