@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace AutoRepairShop.App.View.Forms
         private string[] _headers = new string[]
         { "Id", "Артикул", "Наименование", "Описание", "Картинка",
         "Категория", "Производитель", "Мера", "Колличество", "Скидка", "Цена" };
-        private int _countRows = 19;
+        private int _countRows = 5;
         private int _page;
         private int _maxPage;
 
@@ -43,6 +44,21 @@ namespace AutoRepairShop.App.View.Forms
             smartSelect_Action();
         }
 
+        public class ProductFull
+        {
+            public int Id { get; set; }
+            public string Article { get; set; }
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public Image Picture { get; set; }
+            public int CategoryId { get; set; }
+            public int ManufacturerId { get; set; }
+            public int UnitId { get; set; }
+            public int Count { get; set; }
+            public float Discount { get; set; }
+            public string Price { get; set; }
+        }
+
         private void smartSelect_Action()
         {
             var dto = new SelectDto
@@ -57,23 +73,50 @@ namespace AutoRepairShop.App.View.Forms
             
             var productTable = new List<Product>(Services.ProductSelectService.Select(dto, _countRows, _page * _countRows));
 
+
             dataGridView.Columns.Clear();
-            dataGridView.DataSource = productTable;
+            dataGridView.DataSource = productTable.ConvertAll<ProductFull>(product =>
+            {
+                var tryPath = Environment.CurrentDirectory + "//images//" + product.Picture;
+                Image picture = File.Exists(tryPath) ? Image.FromFile(tryPath) : Properties.Resources.picture;
+                var resize = new Bitmap(100, 90);
+                Graphics.FromImage(resize).DrawImage(picture, 0, 0, 100, 90);
+                picture = resize;
+                return new ProductFull
+                {
+                    Id = product.Id,
+                    Description = product.Description,
+                    Discount = product.Discount * 100,
+                    Article = product.Article,
+                    CategoryId = product.CategoryId,
+                    Count = product.Count,
+                    ManufacturerId = product.ManufacturerId,
+                    Name = product.Name,
+                    Price = "(" + product.Price + ") -> " + product.Price * (1 + product.Discount),
+                    UnitId = product.UnitId,
+                    Picture = picture,
+                };
+             });
+            dataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
             for (int i = 0; i < _headers.Length; i++)
                 dataGridView.Columns[i].HeaderText = _headers[i];
-
-            var editButton = new DataGridViewImageColumn
+            if (State.UserRole == Roles.Manager || State.UserRole == Roles.Admin)
             {
-                Image = Properties.Resources.edit,
-                ImageLayout = DataGridViewImageCellLayout.Zoom
-            };
-            dataGridView.Columns.Add(editButton);
-            var deleteButton = new DataGridViewImageColumn
-            {
-                Image = Properties.Resources.delete,
-                ImageLayout = DataGridViewImageCellLayout.Zoom
-            };
-            dataGridView.Columns.Add(deleteButton);
+                var editButton = new DataGridViewImageColumn
+                {
+                    Image = Properties.Resources.edit,
+                    ImageLayout = DataGridViewImageCellLayout.Zoom
+                };
+                dataGridView.Columns.Add(editButton);
+                var deleteButton = new DataGridViewImageColumn
+                {
+                    Image = Properties.Resources.delete,
+                    ImageLayout = DataGridViewImageCellLayout.Zoom
+                };
+                dataGridView.Columns.Add(deleteButton);
+            }
+            
 
             counterRowsLabel.Text = Services.ProductSelectService.Count.ToString();
             _maxPage = Services.ProductSelectService.Count / _countRows;
@@ -106,6 +149,10 @@ namespace AutoRepairShop.App.View.Forms
 
         private void Form_Load(object sender, EventArgs e)
         {
+            if (State.UserRole == Roles.User || State.UserRole == Roles.NoAuth)
+                addButton.Visible = false;
+            else addButton.Visible = true;
+
             searchField.Items.AddRange(_headers);
             searchField.SelectedIndex = 0;
             sortField.Items.AddRange(_headers);
