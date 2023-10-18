@@ -14,7 +14,8 @@ namespace AutoRepairShop.Data.Mappers
                 Date = entity[1],
                 Code = entity[2],
                 Status = entity[3],
-                UserInfoId = int.Parse(entity[4])
+                UserInfoId = int.Parse(entity[4]),
+                Price = float.Parse(entity[5]),
             };
         }
 
@@ -27,6 +28,7 @@ namespace AutoRepairShop.Data.Mappers
                 entity.Code,
                 entity.Status.ToString(),
                 entity.UserInfoId.ToString(),
+                entity.Price.ToString(),
             };
         }
     }

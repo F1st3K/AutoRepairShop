@@ -149,7 +149,7 @@ namespace AutoRepairShop.App.View.Forms
             filterField.Items.AddRange(_headers);
             filterField.SelectedIndex = 0;
             Services.ProductSelectService.UpdateData();
-            var user = State.UserInfo;
+            var user = State.OrderUserInfo;
             nameLabel.Text = user.Surname + " " + user.Name + " " + user.Patronomic;
             dobLabel.Text = user.DOB;
             phoneLabel.Text = user.Phone;
@@ -234,6 +234,29 @@ namespace AutoRepairShop.App.View.Forms
                 }
             }
             catch { };
+        }
+
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show(
+                "Вы точно хотите оформить заказ:" + nameLabel.Text + "" +
+                " на сумму: " + priceLabel.Text + " рублей?",
+                "Внимание!", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+                return;
+
+            var dto = new OrderDto
+            {
+                Price = float.Parse(priceLabel.Text),
+                UserInfoId = State.OrderUserInfo.Id,
+                Products = _cart.ConvertAll(p => new OrderDto.ProductDto
+                {
+                    ProductId = p.Id,
+                    Count = p.Count
+                }).ToArray()
+            };
+
+            Services.OrderService.CreateOrder(dto);
         }
     }
 }

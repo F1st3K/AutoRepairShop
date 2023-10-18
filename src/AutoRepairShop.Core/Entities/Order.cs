@@ -10,5 +10,7 @@ namespace AutoRepairShop.Core.Entities
         public string Status { get; set; }
         
         public int UserInfoId { get; set; }
+
+        public float Price { get; set; }
     }
 }

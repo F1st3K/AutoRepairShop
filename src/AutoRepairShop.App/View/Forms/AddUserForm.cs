@@ -1,4 +1,5 @@
-﻿using AutoRepairShop.Core.Entities;
+﻿using AutoRepairShop.Core.dtos;
+using AutoRepairShop.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,7 @@ namespace AutoRepairShop.App.View.Forms
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            Services.UserService.CreateUser(new UserFull
+            Services.UserService.CreateUser(new UserDto
             {
                 Name = nameText.Text,
                 Surname = surnameText.Text,

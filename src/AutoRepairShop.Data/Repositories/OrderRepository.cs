@@ -13,11 +13,11 @@ namespace AutoRepairShop.Data.Repositories
         public int Add(Order entity)
         {
             var query = "INSERT INTO `auto_repair_shop`.`orders` " +
-                "(`Date`, `Code`, `Status`, `UserInfoId`) " +
-                "VALUES (@0, @1, @2, @3);" +
+                "(`Date`, `Code`, `Status`, `UserInfoId`, `Price`) " +
+                "VALUES (@0, @1, @2, @3, @4);" +
                 "SELECT LAST_INSERT_ID();";
             var table = DataContext.GetInstance().QueryReturn(query,
-                new object[] { entity.Date, entity.Code, entity.Status, entity.UserInfoId });
+                new object[] { entity.Date, entity.Code, entity.Status, entity.UserInfoId, entity.Price });
             return Convert.ToInt32(table[0][0]);
         }
 
@@ -30,9 +30,9 @@ namespace AutoRepairShop.Data.Repositories
         public void Edit(Order entity)
         {
             var query = "UPDATE `auto_repair_shop`.`orders` " +
-                "SET `Date`=@0, `Code`=@1, `Status`=@2, `UserInfoId`=@3, `Id`=@4;";
+                "SET `Date`=@0, `Code`=@1, `Status`=@2, `UserInfoId`=@3, `Price`=@4, WHERE `Id`=@5;";
             DataContext.GetInstance().QueryExecute(query,
-               new object[] { entity.Date, entity.Code, entity.Status, entity.UserInfoId, entity.Id });
+               new object[] { entity.Date, entity.Code, entity.Status, entity.UserInfoId, entity.Price, entity.Id });
         }
 
         public Order[] GetAll()

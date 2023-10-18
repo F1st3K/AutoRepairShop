@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace AutoRepairShop.App.View.Forms
 {
@@ -68,7 +69,32 @@ namespace AutoRepairShop.App.View.Forms
 
         private void createOrderButton_Click(object sender, System.EventArgs e)
         {
-            this.SwitchFormTo(new CreateOrderForm());
+            Action action = () => {
+                if (State.OrderUserInfo != null)
+                    this.SwitchFormTo(new CreateOrderForm());
+                else Show();
+            };
+            Action retryAction = () => {
+                if (State.OrderUserInfo != null)
+                    this.SwitchFormTo(new CreateOrderForm(), () => {
+                        State.OrderUserInfo = null;
+                        Show();
+                    });
+                else Show();
+            };
+            if (State.OrderUserInfo == null)
+                switch (State.UserRole)
+                {
+                    case Roles.NoAuth: this.SwitchFormTo(new NewUserInfoForm(), action);
+                        break;
+                    case Roles.Admin:
+                    case Roles.Manager: this.SwitchFormTo(new SelectUserForm(), retryAction);
+                        break;
+                    case Roles.User:
+                        State.OrderUserInfo = State.UserInfo;
+                        break;
+                }
+            else this.SwitchFormTo(new CreateOrderForm());
         }
     }
 }

@@ -17,11 +17,11 @@ namespace AutoRepairShop.Core.Services
             _userInfoRepository = userInfoRepository;
         }
 
-        public UserFull GetUser(int id)
+        public UserDto GetUser(int id)
         {
             _userRepository.TryGet(id, out var user);
             _userInfoRepository.TryGet(user.InfoId, out var userInfo);
-            return new UserFull
+            return new UserDto
             {
                 Id = userInfo.Id,
                 Name = userInfo.Name,
@@ -35,7 +35,7 @@ namespace AutoRepairShop.Core.Services
             };
         }
 
-        public void EditUser(UserFull user)
+        public void EditUser(UserDto user)
         {
             var ui = new UserInfo
             {
@@ -74,7 +74,7 @@ namespace AutoRepairShop.Core.Services
 
         }
 
-        public void CreateUser(UserFull user)
+        public void CreateUser(UserDto user)
         {
             var ui = new UserInfo
             {

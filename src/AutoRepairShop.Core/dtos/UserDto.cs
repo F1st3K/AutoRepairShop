@@ -1,6 +1,6 @@
-﻿namespace AutoRepairShop.Core.Entities
+﻿namespace AutoRepairShop.Core.dtos
 {
-    public class UserFull
+    public class UserDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

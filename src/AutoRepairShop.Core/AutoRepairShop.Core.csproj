@@ -45,8 +45,10 @@
     <Compile Include="dtos\RegDto.cs" />
     <Compile Include="dtos\SelectDto.cs" />
     <Compile Include="Entities\Order.cs" />
+    <Compile Include="dtos\OrderDto.cs" />
+    <Compile Include="Entities\OrderProduct.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\UserFull.cs" />
+    <Compile Include="dtos\UserDto.cs" />
     <Compile Include="Entities\Interfaces\IEntity.cs" />
     <Compile Include="Entities\Interfaces\IUniqNamed.cs" />
     <Compile Include="Entities\User.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="Repositories\IUniqNameRepository.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\HashService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\SmartSelectService.cs" />

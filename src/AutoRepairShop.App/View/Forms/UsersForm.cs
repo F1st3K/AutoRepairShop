@@ -54,11 +54,11 @@ namespace AutoRepairShop.App.View.Forms
             };
             var userInfos = new List<UserInfo>(Services.UserInfoSelectService.Select(dto, _countRows, _page * _countRows));
             var users = new List<User>(Services.UserSelectService.Select(Services.UserSelectService.Count));
-            var userTable = userInfos.ConvertAll<UserFull>(ui =>
+            var userTable = userInfos.ConvertAll<UserDto>(ui =>
             {
 
                 User u = users.Find(user => ui.Id == user.InfoId);
-                return new UserFull
+                return new UserDto
                 {
                     Id = ui.Id,
                     Name = ui.Name,
@@ -136,7 +136,7 @@ namespace AutoRepairShop.App.View.Forms
             if (e.ColumnIndex == dataGridView.Columns[9].Index && e.RowIndex >= 0)
             {
                 var date = (string)dataGridView.Rows[e.RowIndex].Cells[4].Value;
-                var user = new UserFull
+                var user = new UserDto
                 {
                     Id = (int)dataGridView.Rows[e.RowIndex].Cells[0].Value,
                     Name = (string)dataGridView.Rows[e.RowIndex].Cells[1].Value,

@@ -14,9 +14,9 @@ namespace AutoRepairShop.App.View.Forms
 {
     public partial class EditUserForm : Form
     {
-        private UserFull _fillUser;
+        private UserDto _fillUser;
 
-        public EditUserForm(UserFull user)
+        public EditUserForm(UserDto user)
         {
             _fillUser = user;
             InitializeComponent();
@@ -71,7 +71,7 @@ namespace AutoRepairShop.App.View.Forms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            Services.UserService.EditUser(new UserFull
+            Services.UserService.EditUser(new UserDto
             {
                 Id = _fillUser.Id,
                 Name = nameText.Text,
