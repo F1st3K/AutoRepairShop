@@ -130,6 +130,7 @@ namespace AutoRepairShop.App.View.Forms
             this.createOrderButton.TabIndex = 8;
             this.createOrderButton.Text = "Оформить покупку";
             this.createOrderButton.UseVisualStyleBackColor = true;
+            this.createOrderButton.Click += new System.EventHandler(this.createOrderButton_Click);
             // 
             // exitButton
             // 
