@@ -51,7 +51,10 @@ namespace AutoRepairShop.App.View.Forms
         private void passwordText_TextChanged(object sender, EventArgs e)
         {
             registrationButton.Enabled = passwordText.Text == rememberPaswordText.Text
-                && (DateTime.TryParse(dobText.Text, out _) || dobText.Text == "  .  .");
+                && (DateTime.TryParse(dobText.Text, out _) || dobText.Text == "  .  .")
+                && loginText.Text != string.Empty
+                && nameText.Text != string.Empty
+                && surnameText.Text != string.Empty;
         }
     }
 }

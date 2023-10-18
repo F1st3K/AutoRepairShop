@@ -61,12 +61,16 @@ namespace AutoRepairShop.Data.Repositories
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var query = "DELETE FROM `auto_repair_shop`.`users` WHERE `Id`=@0;";
+            DataContext.GetInstance().QueryExecute(query, id);
         }
 
         public void Edit(User entity)
         {
-            throw new NotImplementedException();
+            var query = "UPDATE `auto_repair_shop`.`users` " +
+                "SET `Login`=@0, `Hash`=@1, `RoleId`=@2, `InfoId`=@3 WHERE `Id`=@4;";
+            DataContext.GetInstance().QueryExecute(query,
+                new object[] { entity.UniqName, entity.Hash, entity.RoleId, entity.InfoId, entity.Id });
         }
     }
 }

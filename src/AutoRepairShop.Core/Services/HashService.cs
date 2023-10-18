@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoRepairShop.Core.Services
 {
-    class HashService
+    public class HashService
     {
         public string Hash(string pwd)
         {

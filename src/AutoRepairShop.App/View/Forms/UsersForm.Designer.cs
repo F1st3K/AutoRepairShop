@@ -102,9 +102,9 @@ namespace AutoRepairShop.App.View.Forms
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(16, 91);
+            this.dataGridView.Location = new System.Drawing.Point(16, 80);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(1156, 477);
+            this.dataGridView.Size = new System.Drawing.Size(1156, 493);
             this.dataGridView.TabIndex = 6;
             this.dataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellClick);
             // 
@@ -284,6 +284,7 @@ namespace AutoRepairShop.App.View.Forms
             this.Name = "UsersForm";
             this.Text = "Пользователи";
             this.Load += new System.EventHandler(this.UsersForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.UsersForm_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -6,6 +6,8 @@ namespace AutoRepairShop.App
 {
     static class Services
     {
+        public static HashService HashService { get; set; }
+
         public static AuthService<UserRepository, UserInfoRepository> AuthService { get; set; }
 
         public static SmartSelectService<UserInfo> UserInfoSelectService { get; set; }

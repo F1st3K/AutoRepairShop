@@ -17,11 +17,11 @@ namespace AutoRepairShop.Core.Services
             _userInfoRepository = userInfoRepository;
         }
 
-        public UserDto GetUser(int id)
+        public UserFull GetUser(int id)
         {
             _userRepository.TryGet(id, out var user);
             _userInfoRepository.TryGet(user.InfoId, out var userInfo);
-            return new UserDto
+            return new UserFull
             {
                 Id = userInfo.Id,
                 Name = userInfo.Name,
@@ -35,7 +35,7 @@ namespace AutoRepairShop.Core.Services
             };
         }
 
-        public void EditUser(UserDto user)
+        public void EditUser(UserFull user)
         {
             var ui = new UserInfo
             {
@@ -46,20 +46,57 @@ namespace AutoRepairShop.Core.Services
                 DOB = user.DateOfBirth,
                 Phone = user.Phone,
             };
+            var u = new User
+            {
+                Id = 0,
+                UniqName = user.Login,
+                Hash = user.Hash,
+                InfoId = user.Id,
+                RoleId = user.Role
+            };
+
             _userInfoRepository.Edit(ui);
+
             if (_userRepository.TryGetId(user.Login, out var id))
             {
-                var u = new User
+                if (user.Role == 0)
                 {
-                    Id = id,
-                    UniqName = user.Login,
-                    Hash = user.Hash,
-                    InfoId = user.Id,
-                    RoleId = user.Role
-                };
+                    _userRepository.Delete(id);
+                    return;
+                }
+                u.Id = id;
                 _userRepository.Edit(u);
             }
+            else
+            {
+                _userRepository.Add(u);
+            }
 
+        }
+
+        public void CreateUser(UserFull user)
+        {
+            var ui = new UserInfo
+            {
+                Id = 0,
+                Name = user.Name,
+                Surname = user.Surname,
+                Patronomic = user.Patronomic,
+                DOB = user.DateOfBirth,
+                Phone = user.Phone,
+            };
+            
+            int id = _userInfoRepository.Add(ui);
+            var u = new User
+            {
+                Id = 0,
+                UniqName = user.Login,
+                Hash = user.Hash,
+                InfoId = id,
+                RoleId = user.Role
+            };
+            if (user.Role != 0)
+                _userRepository.Add(u);
         }
 
         public void DeleteUser(int id, string uname)

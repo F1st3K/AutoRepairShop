@@ -29,8 +29,9 @@ namespace AutoRepairShop.App
             DataContext.GetInstance().TestConnection();
 
             //dependensy for AuthService
+            Services.HashService = new HashService();
             Services.AuthService = new AuthService<UserRepository, UserInfoRepository>(
-                new UserRepository(), new UserInfoRepository());
+                new UserRepository(), new UserInfoRepository(), Services.HashService);
             Services.UserService = new UserService<UserRepository, UserInfoRepository>(
                 new UserRepository(), new UserInfoRepository());
 

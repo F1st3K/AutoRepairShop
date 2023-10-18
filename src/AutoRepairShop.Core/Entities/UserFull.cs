@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutoRepairShop.Core.dtos
+﻿namespace AutoRepairShop.Core.Entities
 {
-    public class UserDto
+    public class UserFull
     {
         public int Id { get; set; }
         public string Name { get; set; }

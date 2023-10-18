@@ -66,6 +66,7 @@ namespace AutoRepairShop.App.View.Forms
             this.nameText.Name = "nameText";
             this.nameText.Size = new System.Drawing.Size(203, 31);
             this.nameText.TabIndex = 1;
+            this.nameText.TextChanged += new System.EventHandler(this.passwordText_TextChanged);
             // 
             // surnameText
             // 
@@ -74,6 +75,7 @@ namespace AutoRepairShop.App.View.Forms
             this.surnameText.Name = "surnameText";
             this.surnameText.Size = new System.Drawing.Size(203, 31);
             this.surnameText.TabIndex = 3;
+            this.surnameText.TextChanged += new System.EventHandler(this.passwordText_TextChanged);
             // 
             // label2
             // 
@@ -143,6 +145,7 @@ namespace AutoRepairShop.App.View.Forms
             this.loginText.Name = "loginText";
             this.loginText.Size = new System.Drawing.Size(203, 31);
             this.loginText.TabIndex = 11;
+            this.loginText.TextChanged += new System.EventHandler(this.passwordText_TextChanged);
             // 
             // label6
             // 
