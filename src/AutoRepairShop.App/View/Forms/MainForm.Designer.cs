@@ -110,6 +110,7 @@ namespace AutoRepairShop.App.View.Forms
             this.ordersButton.Text = "Продажи";
             this.ordersButton.UseVisualStyleBackColor = true;
             this.ordersButton.Visible = false;
+            this.ordersButton.Click += new System.EventHandler(this.ordersButton_Click);
             // 
             // productsButton
             // 

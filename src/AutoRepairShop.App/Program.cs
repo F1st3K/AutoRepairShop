@@ -42,6 +42,8 @@ namespace AutoRepairShop.App
                 new UserRepository(), new UserMapper());
             Services.ProductSelectService = new SmartSelectService<Core.Entities.Product>(
                 new ProductRepository(), new ProductMapper());
+            Services.OrderSelectService = new SmartSelectService<Core.Entities.Order>(
+                new OrderRepository(), new OrderMapper());
 
             //Run application
             Application.EnableVisualStyles();

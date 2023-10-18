@@ -63,7 +63,6 @@ namespace AutoRepairShop.Data
                         row.Add(reader.GetString(j));
                     table.Add(row);
                 }
-                    
             }
             catch (Exception ex)
             {

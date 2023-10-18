@@ -60,5 +60,10 @@ namespace AutoRepairShop.App.View.Forms
         {
             this.SwitchFormTo(new ProductsForm());
         }
+
+        private void ordersButton_Click(object sender, System.EventArgs e)
+        {
+            this.SwitchFormTo(new OrdersForm());
+        }
     }
 }

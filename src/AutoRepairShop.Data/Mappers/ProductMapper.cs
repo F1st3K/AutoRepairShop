@@ -26,7 +26,7 @@ namespace AutoRepairShop.Data.Mappers
         public string[] ToString(Product entity)
         {
             return new string[]
-           {
+            {
                 entity.Id.ToString(),
                 entity.Article.ToString(),
                 entity.Name.ToString(),
@@ -38,7 +38,7 @@ namespace AutoRepairShop.Data.Mappers
                 entity.Count.ToString(),
                 entity.Discount.ToString(),
                 entity.Price.ToString(),
-           };
+            };
         }
     }
 }

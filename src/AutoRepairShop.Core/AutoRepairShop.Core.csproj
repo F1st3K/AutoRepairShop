@@ -44,6 +44,7 @@
     <Compile Include="dtos\AuthDto.cs" />
     <Compile Include="dtos\RegDto.cs" />
     <Compile Include="dtos\SelectDto.cs" />
+    <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\UserFull.cs" />
     <Compile Include="Entities\Interfaces\IEntity.cs" />
