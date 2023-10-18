@@ -76,10 +76,17 @@ namespace AutoRepairShop.App.View.Forms
             dataGridView.DataSource = userTable;
             for (int i = 0; i < _headers.Length; i++)
                 dataGridView.Columns[i].HeaderText = _headers[i];
-            var deleteButton = new DataGridViewButtonColumn { Name = "Delete" };
-            dataGridView.Columns.Add(deleteButton);
-            var editButton = new DataGridViewButtonColumn { Name = "Edit" };
+            
+            var editButton = new DataGridViewImageColumn { 
+                Image = Properties.Resources.edit,
+                ImageLayout = DataGridViewImageCellLayout.Zoom
+            };
             dataGridView.Columns.Add(editButton);
+            var deleteButton = new DataGridViewImageColumn { 
+                Image = Properties.Resources.delete,
+                ImageLayout = DataGridViewImageCellLayout.Zoom
+            };
+            dataGridView.Columns.Add(deleteButton);
 
             counterRowsLabel.Text = Services.UserInfoSelectService.Count.ToString();
             _maxPage = Services.UserInfoSelectService.Count / _countRows;
@@ -126,7 +133,7 @@ namespace AutoRepairShop.App.View.Forms
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dataGridView.Columns["Edit"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == dataGridView.Columns[9].Index && e.RowIndex >= 0)
             {
                 var date = (string)dataGridView.Rows[e.RowIndex].Cells[4].Value;
                 var user = new UserFull
@@ -144,7 +151,7 @@ namespace AutoRepairShop.App.View.Forms
                 this.SwitchFormTo(new EditUserForm(user));
             }
 
-            if (e.ColumnIndex == dataGridView.Columns["Delete"].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == dataGridView.Columns[10].Index && e.RowIndex >= 0)
             {
                 int id = (int)dataGridView.Rows[e.RowIndex].Cells["Id"].Value;
                 string uname = (string)dataGridView.Rows[e.RowIndex].Cells["Login"].Value;
