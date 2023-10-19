@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace AutoRepairShop.App.View
 {
@@ -16,6 +17,13 @@ namespace AutoRepairShop.App.View
         public static void SwitchFormTo(this Form obj, Form form)
         {
             form.FormClosed += (e, a) => obj.Show();
+            obj.Hide();
+            form.Show();
+        }
+
+        public static void SwitchFormTo(this Form obj, Form form, Action action)
+        {
+            form.FormClosed += (e, a) => action();
             obj.Hide();
             form.Show();
         }

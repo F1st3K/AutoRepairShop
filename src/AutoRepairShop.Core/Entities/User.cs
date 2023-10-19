@@ -1,6 +1,6 @@
 ﻿using AutoRepairShop.Core.Entities.Interfaces;
 
-namespace AutoRepairShop.Core.Entity
+namespace AutoRepairShop.Core.Entities
 {
     public class User : IEntity, IUniqNamed
     {

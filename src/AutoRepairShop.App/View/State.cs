@@ -6,6 +6,7 @@ namespace AutoRepairShop.App.View
     static class State
     {
         public static UserInfo UserInfo { get; set; }
+        public static UserInfo OrderUserInfo { get; set; }
         public static Roles UserRole { get; set; }
 
         public static void ClearUserState()
@@ -20,6 +21,7 @@ namespace AutoRepairShop.App.View
                 DOB = String.Empty,
                 Phone = String.Empty,
             };
+            OrderUserInfo = null;
         }
     }
 }

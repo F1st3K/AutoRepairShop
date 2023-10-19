@@ -1,11 +1,16 @@
 ﻿using AutoRepairShop.Core.Entities;
+using AutoRepairShop.Core.Entities.Interfaces;
+using AutoRepairShop.Core.Mappers;
 using AutoRepairShop.Core.Repositories;
+using AutoRepairShop.Data.Mappers;
 using System;
 
 namespace AutoRepairShop.Data.Repositories
 {
     public class UserInfoRepository : IRepository<UserInfo>
     {
+        public IStringMapper<UserInfo> Mapper => new UserInfoMapper();
+
         public int Add(UserInfo entity)
         {
             var query = "INSERT INTO `auto_repair_shop`.`usersinfo` " +
@@ -14,7 +19,31 @@ namespace AutoRepairShop.Data.Repositories
                 "SELECT LAST_INSERT_ID();";
             var table = DataContext.GetInstance().QueryReturn(query,
                 new object[] { entity.Name, entity.Surname, entity.Patronomic, entity.DOB, entity.Phone });
-            return Convert.ToInt32(table.Rows[0][0]);
+            return Convert.ToInt32(table[0][0]);
+        }
+
+        public void Delete(int id)
+        {
+            var query = "DELETE FROM `auto_repair_shop`.`usersInfo` WHERE `Id`=@0;";
+            DataContext.GetInstance().QueryExecute(query, id);
+        }
+
+        public void Edit(UserInfo entity)
+        {
+            var query = "UPDATE `auto_repair_shop`.`usersinfo` " +
+                "SET `Name`=@0, `Surname`=@1, `Patronymic`=@2, `DataOfBirth`=@3, `Phone`=@4 WHERE `Id`=@5;";
+            DataContext.GetInstance().QueryExecute(query,
+                new object[] { entity.Name, entity.Surname, entity.Patronomic, entity.DOB, entity.Phone, entity.Id });
+        }
+
+        public UserInfo[] GetAll()
+        {
+            var query = "SELECT * FROM `auto_repair_shop`.`usersinfo`;";
+            var table = DataContext.GetInstance().QueryReturn(query);
+            var entities = new UserInfo[table.Length];
+            for (int i = 0; i < table.Length; i++)
+                entities[i] = Mapper.ToEntity(table[i]);
+            return entities;
         }
 
         public bool TryGet(int id, out UserInfo entity)
@@ -22,19 +51,9 @@ namespace AutoRepairShop.Data.Repositories
             entity = null;
             var query = "SELECT * FROM `auto_repair_shop`.`usersinfo` WHERE `Id` LIKE @0;";
             var table = DataContext.GetInstance().QueryReturn(query, id);
-            if (table.Rows.Count <= 0)
+            if (table.Length <= 0)
                 return false;
-            entity = new UserInfo
-            {
-                Id = (int)table.Rows[0][0],
-                Name = (string)table.Rows[0][1],
-                Surname = (string)table.Rows[0][2],
-                Patronomic = (string)table.Rows[0][3],
-                DOB = (string)table.Rows[0][4],
-                Phone = (string)table.Rows[0][5]
-            };
-            if (DateTime.TryParse(entity.DOB, out var dob))
-                entity.DOB = dob.ToString("yyyy-MM-dd");
+            entity = Mapper.ToEntity(table[0]);
             return true;
         }
     }

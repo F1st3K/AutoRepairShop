@@ -1,6 +1,5 @@
 ﻿using AutoRepairShop.Core.dtos;
 using AutoRepairShop.Core.Entities;
-using AutoRepairShop.Core.Entity;
 using AutoRepairShop.Core.Repositories;
 
 namespace AutoRepairShop.Core.Services
@@ -13,11 +12,11 @@ namespace AutoRepairShop.Core.Services
         private TUserInfoRepository _userInfoRepository;
         private HashService _hashService;
 
-        public AuthService(TUserRepository userRepository, TUserInfoRepository userInfoRepository)
+        public AuthService(TUserRepository userRepository, TUserInfoRepository userInfoRepository, HashService hashService)
         {
             _userRepository = userRepository;
             _userInfoRepository = userInfoRepository;
-            _hashService = new HashService();
+            _hashService = hashService;
         }
 
         public bool TrySignIn(AuthDto dto, out UserInfo userInfo, out int roleId)
