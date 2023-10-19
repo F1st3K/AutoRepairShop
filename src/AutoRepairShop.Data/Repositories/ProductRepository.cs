@@ -34,7 +34,7 @@ namespace AutoRepairShop.Data.Repositories
         public void Edit(Product entity)
         {
             var query = "UPDATE `auto_repair_shop`.`products` " +
-                "SET `Article`=@0, `Name`=@1, `Description`=@2, `Picture`=@3, `CategoryId`=@4, `ManufacturerId`=@5, `UnitId`=@6, `QuantityInStock`=@7, `Discount`=@8, `Price`=@9, `Id`=@10;";
+                "SET `Article`=@0, `Name`=@1, `Description`=@2, `Picture`=@3, `CategoryId`=@4, `ManufacturerId`=@5, `UnitId`=@6, `QuantityInStock`=@7, `Discount`=@8, `Price`=@9 WHERE `Id`=@10;";
             DataContext.GetInstance().QueryExecute(query,
                 new object[] {
                     entity.Article, entity.Name, entity.Description, entity.Picture,

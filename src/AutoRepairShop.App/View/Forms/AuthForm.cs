@@ -47,6 +47,8 @@ namespace AutoRepairShop.App.View.Forms
 
         private void AuthForm_Shown(object sender, EventArgs e)
         {
+            loginText.Text = string.Empty;
+            passwordText.Text = string.Empty;
         }
     }
 }

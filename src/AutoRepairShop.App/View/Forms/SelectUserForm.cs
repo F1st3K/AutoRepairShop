@@ -17,6 +17,7 @@ namespace AutoRepairShop.App.View.Forms
         public SelectUserForm()
         {
             InitializeComponent();
+            this.Init();
         }
 
         private string[] _headers = new string[]

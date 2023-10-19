@@ -5,17 +5,22 @@ using System;
 
 namespace AutoRepairShop.Core.Services
 {
-    public class OrderService<TOrderRepository, TOrderProductRepository>
+    public class OrderService<TOrderRepository, TOrderProductRepository, TProductRepository>
         where TOrderRepository : IRepository<Order>
         where TOrderProductRepository : IRepository<OrderProduct>
+        where TProductRepository : IRepository<Product>
     {
         private TOrderRepository _orderRepository;
         private TOrderProductRepository _orderProductRepository;
+        private TProductRepository _productRepository;
 
-        public OrderService(TOrderRepository orderRepository, TOrderProductRepository orderProductRepository)
+        public OrderService(TOrderRepository orderRepository,
+            TOrderProductRepository orderProductRepository,
+            TProductRepository productRepository)
         {
             _orderProductRepository = orderProductRepository;
             _orderRepository = orderRepository;
+            _productRepository = productRepository;
         }
 
         public void CreateOrder(OrderDto dto)
@@ -37,6 +42,9 @@ namespace AutoRepairShop.Core.Services
                     OrderId = orderId,
                     ProductId = orderProduct.ProductId
                 });
+                _productRepository.TryGet(orderProduct.ProductId, out var p);
+                p.Count -= orderProduct.Count;
+                _productRepository.Edit(p);
             }
         }
     }

@@ -180,7 +180,7 @@ namespace AutoRepairShop.App.View.Forms
                 if (cartRow.Count < count)
                     cartRow.Count++;
             }
-                
+            else if (count == 0) return;
             else
                 _cart.Add(new Cart
                 {
@@ -189,7 +189,7 @@ namespace AutoRepairShop.App.View.Forms
                     Picture = (Image)row[4].Value,
                     Price = (double)row[11].Value,
                     Count = 1
-                }) ;
+                });
             dataGridViewCart.Columns.Clear();
             dataGridViewCart.DataSource = new List<Cart>(_cart);
 
@@ -257,6 +257,7 @@ namespace AutoRepairShop.App.View.Forms
             };
 
             Services.OrderService.CreateOrder(dto);
+            this.SwitchToBackForm();
         }
     }
 }

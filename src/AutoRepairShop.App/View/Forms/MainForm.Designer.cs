@@ -144,6 +144,7 @@ namespace AutoRepairShop.App.View.Forms
             // 
             // otherButton
             // 
+            this.otherButton.Enabled = false;
             this.otherButton.Location = new System.Drawing.Point(81, 289);
             this.otherButton.Name = "otherButton";
             this.otherButton.Size = new System.Drawing.Size(320, 37);
@@ -154,6 +155,7 @@ namespace AutoRepairShop.App.View.Forms
             // 
             // specialButton
             // 
+            this.specialButton.Enabled = false;
             this.specialButton.Location = new System.Drawing.Point(81, 332);
             this.specialButton.Name = "specialButton";
             this.specialButton.Size = new System.Drawing.Size(320, 37);

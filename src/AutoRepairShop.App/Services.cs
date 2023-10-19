@@ -20,6 +20,6 @@ namespace AutoRepairShop.App
 
         public static SmartSelectService<Order> OrderSelectService { get; set; }
 
-        public static OrderService<OrderRepository, OrderProductRepository> OrderService { get; set; }
+        public static OrderService<OrderRepository, OrderProductRepository, ProductRepository> OrderService { get; set; }
     }
 }

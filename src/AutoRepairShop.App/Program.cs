@@ -34,8 +34,8 @@ namespace AutoRepairShop.App
                 new UserRepository(), new UserInfoRepository(), Services.HashService);
             Services.UserService = new UserService<UserRepository, UserInfoRepository>(
                 new UserRepository(), new UserInfoRepository());
-            Services.OrderService = new OrderService<OrderRepository, OrderProductRepository>(
-                new OrderRepository(), new OrderProductRepository());
+            Services.OrderService = new OrderService<OrderRepository, OrderProductRepository, ProductRepository>(
+                new OrderRepository(), new OrderProductRepository(), new ProductRepository());
 
             //dependensy for SmartSelectService
             Services.UserInfoSelectService = new SmartSelectService<Core.Entities.UserInfo>(

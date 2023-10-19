@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AutoRepairShop.Core.Services
 {
@@ -10,7 +8,12 @@ namespace AutoRepairShop.Core.Services
     {
         public string Hash(string pwd)
         {
-            return pwd;
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(pwd);
+                byte[] hashedBytes = sha256Hash.ComputeHash(bytes);
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            }
         }
     }
 }
